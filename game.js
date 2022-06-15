@@ -18,6 +18,17 @@ $(document).keypress(function() {
   }
 });
 
+function animateSequence(index) {
+  var colour = gamePattern[index];
+  setTimeout(function() {
+    $("#" + colour).fadeIn(100).fadeOut(100).fadeIn(100);
+    playSound(colour);
+    if(++index < gamePattern.length) {
+      animateSequence(index);
+    }
+  }, 1000);
+}
+
 
 
 // Primary sequence that generates random colour and button the user has to press to pass the level
