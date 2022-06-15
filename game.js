@@ -14,9 +14,11 @@ $(document).keypress(function() {
   if (!started) {
     $("#level-title").text("Level " + level);
     nextSequence();
+    animateSequence(0);
     started = true;
   }
 });
+
 
 function animateSequence(index) {
   var colour = gamePattern[index];
@@ -28,7 +30,6 @@ function animateSequence(index) {
     }
   }, 1000);
 }
-
 
 
 // Primary sequence that generates random colour and button the user has to press to pass the level
@@ -43,11 +44,11 @@ function nextSequence() {
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
 
-  console.log(gamePattern);
+  // console.log(gamePattern);
 
-  $("#" + randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
+  // $("#" + randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
 
-  playSound(randomChosenColour);
+  // playSound(randomChosenColour);
 
 }
 
@@ -99,6 +100,7 @@ function checkAnswer(currentLevel) {
     if (userClickedPattern.length === gamePattern.length) {
       setTimeout(function() {
         nextSequence();
+        animateSequence(0);
       }, 1000);
     }
   } else {
